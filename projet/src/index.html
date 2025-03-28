@@ -1,39 +1,305 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="cupcake">
+<html lang="fr" data-theme="corporate">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Tailwind CSS et DaisyUI</title>
-  <!-- Inclure Tailwind CSS via CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Inclure DaisyUI via CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.1/dist/full.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Passion pour l'Informatique</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="p-4">
-
-  <!-- Test des classes de base de Tailwind CSS -->
-  <div class="bg-blue-500 text-white p-4 m-4">
-    Ceci est une boîte avec des classes Tailwind CSS.
-  </div>
-
-  <!-- Test des composants DaisyUI -->
-  <div class="mt-4">
-    <!-- Bouton DaisyUI -->
-    <button class="btn btn-secondary">Bouton secondaire</button>
-
-    <!-- Alerte DaisyUI -->
-    <div class="alert alert-success mt-4">
-      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-      <span>Ceci est une alerte de succès!</span>
+<body class="min-h-screen bg-base-100">
+    <!-- Navigation -->
+    <div class="navbar bg-base-200 shadow-lg">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="#passion">Ma Passion</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#calculatrice">Calculatrice</a></li>
+                    <li><a href="#contact">Me Contacter</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost normal-case text-xl">Passion Informatique</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#passion">Ma Passion</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#calculatrice">Calculatrice</a></li>
+                <li><a href="#contact">Me Contacter</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <button id="bruteForceBtn" class="btn btn-error">Brute Force</button>
+        </div>
     </div>
-  </div>
 
-  <!-- Test des utilitaires Tailwind -->
-  <div class="flex justify-center items-center h-screen mt-4">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold">Centré avec Flexbox</h1>
+    <!-- Hero Section -->
+    <div class="hero min-h-screen bg-base-200" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-md">
+                <h1 class="mb-5 text-5xl font-bold">Ma Passion pour l'Informatique</h1>
+                <p class="mb-5">Découvrez mon parcours, mes compétences et mes projets dans le domaine de l'informatique et du développement web.</p>
+                <a href="#passion" class="btn btn-primary">En savoir plus</a>
+            </div>
+        </div>
     </div>
-  </div>
 
+    <!-- Passion Section -->
+    <section id="passion" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">Pourquoi l'Informatique?</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <figure><img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=2071&auto=format&fit=crop" alt="Code" class="h-64 w-full object-cover"></figure>
+                        <div class="card-body">
+                            <h3 class="card-title">La Créativité</h3>
+                            <p>L'informatique est pour moi un moyen d'expression. Créer des solutions à partir de rien est une expérience incroyablement gratifiante.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <figure><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Développement" class="h-64 w-full object-cover"></figure>
+                        <div class="card-body">
+                            <h3 class="card-title">La Résolution de Problèmes</h3>
+                            <p>Chaque bug est un puzzle à résoudre, chaque problème une opportunité d'apprendre et d'améliorer mes compétences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <figure><img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964&auto=format&fit=crop" alt="Technologie" class="h-64 w-full object-cover"></figure>
+                        <div class="card-body">
+                            <h3 class="card-title">L'Innovation Constante</h3>
+                            <p>Le domaine évolue rapidement, ce qui signifie qu'il y a toujours quelque chose de nouveau à apprendre et à explorer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences Section -->
+    <section id="competences" class="py-16 px-4 bg-base-200">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">Mes Compétences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Développement Web</h3>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="badge badge-primary">HTML5</span>
+                            <span class="badge badge-primary">CSS3</span>
+                            <span class="badge badge-primary">JavaScript</span>
+                            <span class="badge badge-primary">TailwindCSS</span>
+                            <span class="badge badge-primary">DaisyUI</span>
+                            <span class="badge badge-primary">React</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Développement Backend</h3>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="badge badge-secondary">Node.js</span>
+                            <span class="badge badge-secondary">Express</span>
+                            <span class="badge badge-secondary">Python</span>
+                            <span class="badge badge-secondary">Django</span>
+                            <span class="badge badge-secondary">SQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Outils & Méthodologies</h3>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="badge badge-accent">Git</span>
+                            <span class="badge badge-accent">Docker</span>
+                            <span class="badge badge-accent">Agile</span>
+                            <span class="badge badge-accent">Scrum</span>
+                            <span class="badge badge-accent">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projets" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">Mes Projets</h2>
+            
+            <div class="carousel w-full rounded-box">
+                <div id="slide1" class="carousel-item relative w-full">
+                    <div class="hero min-h-[400px]" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="hero-overlay bg-opacity-60"></div>
+                        <div class="hero-content text-center text-neutral-content">
+                            <div class="max-w-md">
+                                <h3 class="text-3xl font-bold">Application de Gestion de Tâches</h3>
+                                <p class="py-6">Une application React avec backend Node.js permettant de gérer ses tâches quotidiennes avec des fonctionnalités avancées.</p>
+                                <button class="btn btn-primary">Voir le code</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide3" class="btn btn-circle">❮</a> 
+                        <a href="#slide2" class="btn btn-circle">❯</a>
+                    </div>
+                </div> 
+                <div id="slide2" class="carousel-item relative w-full">
+                    <div class="hero min-h-[400px]" style="background-image: url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop');">
+                        <div class="hero-overlay bg-opacity-60"></div>
+                        <div class="hero-content text-center text-neutral-content">
+                            <div class="max-w-md">
+                                <h3 class="text-3xl font-bold">Site E-commerce</h3>
+                                <p class="py-6">Plateforme e-commerce complète avec Django et PostgreSQL, intégrant un système de paiement et de gestion des stocks.</p>
+                                <button class="btn btn-primary">Voir le code</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide1" class="btn btn-circle">❮</a> 
+                        <a href="#slide3" class="btn btn-circle">❯</a>
+                    </div>
+                </div> 
+                <div id="slide3" class="carousel-item relative w-full">
+                    <div class="hero min-h-[400px]" style="background-image: url('https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="hero-overlay bg-opacity-60"></div>
+                        <div class="hero-content text-center text-neutral-content">
+                            <div class="max-w-md">
+                                <h3 class="text-3xl font-bold">API RESTful</h3>
+                                <p class="py-6">API documentée avec Swagger pour un service de réservation en ligne, avec authentification JWT et autorisations fines.</p>
+                                <button class="btn btn-primary">Voir le code</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide2" class="btn btn-circle">❮</a> 
+                        <a href="#slide1" class="btn btn-circle">❯</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculatrice Section -->
+    <section id="calculatrice" class="py-16 px-4 bg-base-200">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">Calculatrice</h2>
+            
+            <div class="flex justify-center">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <div id="calculatrice-container" class="w-full max-w-xs">
+                            <!-- Votre calculatrice sera injectée ici -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">Me Contacter</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title">Formulaire de Contact</h3>
+                            <p>Pour me contacter, vous devez d'abord répondre correctement à quelques questions sur l'informatique. Cela me permet de m'assurer que vous partagez la même passion!</p>
+                            
+                            <div id="questionnaire-container" class="mt-6">
+                                <!-- Les questions seront injectées ici -->
+                            </div>
+                            
+                            <div id="result-message" class="mt-4 hidden">
+                                <div class="alert">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Suite à vos réponses, vous ne souhaitez pas être contacté.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title">Pourquoi ce processus?</h3>
+                            <p>En tant que passionné d'informatique, je reçois de nombreuses demandes. Ce questionnaire me permet de filtrer les contacts sérieux et pertinents.</p>
+                            
+                            <div class="collapse collapse-plus bg-base-200 mt-4">
+                                <input type="checkbox" /> 
+                                <div class="collapse-title text-lg font-medium">
+                                    Quels types de questions seront posées?
+                                </div>
+                                <div class="collapse-content"> 
+                                    <p>Les questions porteront sur des concepts fondamentaux de l'informatique, des technologies web et des bonnes pratiques de développement.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="collapse collapse-plus bg-base-200 mt-2">
+                                <input type="checkbox" /> 
+                                <div class="collapse-title text-lg font-medium">
+                                    Que se passe-t-il si je ne réponds pas correctement?
+                                </div>
+                                <div class="collapse-content"> 
+                                    <p>Vous ne pourrez pas accéder au formulaire de contact complet. Cependant, vous pourrez toujours essayer à nouveau!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer p-10 bg-neutral text-neutral-content">
+        <div>
+            <span class="footer-title">Services</span> 
+            <a class="link link-hover">Développement Web</a>
+            <a class="link link-hover">Conseil en Informatique</a>
+            <a class="link link-hover">Formation</a>
+        </div> 
+        <div>
+            <span class="footer-title">Réseaux</span> 
+            <a class="link link-hover">GitHub</a>
+            <a class="link link-hover">LinkedIn</a>
+            <a class="link link-hover">Twitter</a>
+        </div> 
+        <div>
+            <span class="footer-title">Légal</span> 
+            <a class="link link-hover">Conditions d'utilisation</a>
+            <a class="link link-hover">Politique de confidentialité</a>
+            <a class="link link-hover">Politique relative aux cookies</a>
+        </div>
+    </footer>
+
+    <script src="js/calculatrice.js"></script>
+    <script src="js/questionnaire.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
