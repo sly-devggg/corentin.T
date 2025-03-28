@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Tailwind CSS et DaisyUI</title>
+  <!-- Inclure Tailwind CSS via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Inclure DaisyUI via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.1/dist/full.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+  <!-- Test des classes de base de Tailwind CSS -->
+  <div class="bg-blue-500 text-white p-4 m-4">
+    Ceci est une boîte avec des classes Tailwind CSS.
+  </div>
+
+  <!-- Test des composants DaisyUI -->
+  <div class="mt-4">
+    <!-- Bouton DaisyUI -->
+    <button class="btn btn-secondary">Bouton secondaire</button>
+
+    <!-- Alerte DaisyUI -->
+    <div class="alert alert-success mt-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+      <span>Ceci est une alerte de succès!</span>
+    </div>
+  </div>
+
+  <!-- Test des utilitaires Tailwind -->
+  <div class="flex justify-center items-center h-screen mt-4">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold">Centré avec Flexbox</h1>
+    </div>
+  </div>
+
+</body>
+</html>
