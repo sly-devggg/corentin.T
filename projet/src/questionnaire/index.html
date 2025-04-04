@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .btn-answer {
+            transition: all 0.3s ease;
+        }
+        .btn-answer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-8">Questionnaire</h1>
+        
+        <div id="quiz-container" class="space-y-6">
+            <!-- Les questions s'afficheront ici dynamiquement -->
+        </div>
+        
+        <div id="result-container" class="hidden mt-6 p-4 rounded-lg bg-gray-100">
+            <p id="result-message" class="mb-4"></p>
+            <div id="action-buttons" class="flex flex-col space-y-2">
+                <!-- Boutons Recommencer et Retour au menu apparaîtront ici -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Définition du questionnaire avec 4 questions
+        const questionnaire = [
+            {
+                qid: 1,
+                qlabel: "Question 1: JavaScript est principalement utilisé pour :",
+                reponses: [
+                    { rid: 1, rlabel: "Le développement front-end", correct: true },
+                    { rid: 2, rlabel: "Le stylisme CSS", correct: false },
+                    { rid: 3, rlabel: "La création de bases de données", correct: false }
+                ]
+            },
+            {
+                qid: 2,
+                qlabel: "Question 2: React et Vue sont :",
+                reponses: [
+                    { rid: 1, rlabel: "Des frameworks JavaScript", correct: true },
+                    { rid: 2, rlabel: "Des langages de programmation", correct: false },
+                    { rid: 3, rlabel: "Des méthodes de compression", correct: false }
+                ]
+            },
+            {
+                qid: 3,
+                qlabel: "Question 3: Que signifie 'DOM' en JavaScript ?",
+                reponses: [
+                    { rid: 1, rlabel: "Document Object Model", correct: true },
+                    { rid: 2, rlabel: "Data Object Management", correct: false },
+                    { rid: 3, rlabel: "Digital Output Module", correct: false }
+                ]
+            },
+            {
+                qid: 4,
+                qlabel: "Question 4: Quelle méthode permet d'ajouter un élément à un tableau ?",
+                reponses: [
+                    { rid: 1, rlabel: "push()", correct: true },
+                    { rid: 2, rlabel: "add()", correct: false },
+                    { rid: 3, rlabel: "insert()", correct: false }
+                ]
+            }
+        ];
+
+        // 2. Variables d'état
+        let currentQuestion = 0;
+        let reponses = [];
+        const quizContainer = document.getElementById('quiz-container');
+        const resultContainer = document.getElementById('result-container');
+        const resultMessage = document.getElementById('result-message');
+        const actionButtons = document.getElementById('action-buttons');
+
+        // 3. Fonction pour afficher une question
+        function displayQuestion() {
+            if (currentQuestion < questionnaire.length) {
+                const q = questionnaire[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold">${q.qlabel}</h3>
+                        <div class="space-y-2" id="answers-container"></div>
+                        <div class="text-sm text-gray-500 mt-2">
+                            Question ${currentQuestion + 1}/${questionnaire.length}
+                        </div>
+                    </div>
+                `;
+
+                const answersContainer = document.getElementById('answers-container');
+                q.reponses.forEach(answer => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-answer w-full py-2 px-4 border border-blue-500 rounded-lg text-blue-500 hover:bg-blue-50';
+                    btn.textContent = answer.rlabel;
+                    btn.onclick = () => selectAnswer(answer);
+                    answersContainer.appendChild(btn);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        // 4. Fonction pour gérer la sélection de réponse
+        function selectAnswer(answer) {
+            reponses.push({
+                questionId: questionnaire[currentQuestion].qid,
+                answerId: answer.rid,
+                isCorrect: answer.correct
+            });
+            
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        // 5. Fonction pour afficher les résultats
+        function showResults() {
+            const correctAnswers = reponses.filter(r => r.isCorrect).length;
+            const percentage = Math.round((correctAnswers / questionnaire.length) * 100);
+            
+            quizContainer.innerHTML = '';
+            resultContainer.classList.remove('hidden');
+            resultMessage.textContent = `Vous avez ${correctAnswers} bonnes réponses sur ${questionnaire.length} (${percentage}%)`;
+            
+            // Vider les boutons existants avant d'en ajouter de nouveaux
+            actionButtons.innerHTML = '';
+            
+            // Bouton Recommencer
+            const restartBtn = document.createElement('button');
+            restartBtn.className = 'w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600';
+            restartBtn.textContent = 'Recommencer';
+            restartBtn.onclick = () => {
+                currentQuestion = 0;
+                reponses = [];
+                resultContainer.classList.add('hidden');
+                displayQuestion();
+            };
+            actionButtons.appendChild(restartBtn);
+            
+            // Bouton Retour au menu
+            const menuBtn = document.createElement('button');
+            menuBtn.className = 'w-full bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 mt-2';
+            menuBtn.textContent = 'Retour au menu';
+            menuBtn.onclick = () => {
+                window.location.href = '../index.html'; // Retour à la page principale
+            };
+            actionButtons.appendChild(menuBtn);
+        }
+
+        // Initialisation
+        displayQuestion();
+    </script>
+</body>
+</html>

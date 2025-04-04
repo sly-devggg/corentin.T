@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="corporate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Réussi</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-base-100 flex items-center justify-center p-4">
+    <div class="card bg-base-200 shadow-xl w-full max-w-md">
+        <div class="card-body">
+            <h2 class="card-title text-2xl mb-4">Formulaire de Contact</h2>
+            <form action="mailto:contact@example.com" method="post" enctype="text/plain" class="space-y-4">
+                <div>
+                    <label class="label">Nom</label>
+                    <input type="text" name="name" class="input input-bordered w-full" required>
+                </div>
+                <div>
+                    <label class="label">Prénom</label>
+                    <input type="text" name="firstname" class="input input-bordered w-full" required>
+                </div>
+                <div>
+                    <label class="label">Email</label>
+                    <input type="email" name="email" class="input input-bordered w-full" required>
+                </div>
+                <div>
+                    <label class="label">Message</label>
+                    <textarea name="message" class="textarea textarea-bordered w-full" required>Je vous contacte suite au questionnaire.</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Envoyer</button>
+            </form>
+            <a href="index.html" class="btn btn-ghost mt-4">Retour à l'accueil</a>
+        </div>
+    </div>
+</body>
+</html>

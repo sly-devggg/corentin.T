@@ -8,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-base-100">
-    <!-- Navigation -->
+
+<!------------------------------ Navigation ----------- ----------------------->
+
     <div class="navbar bg-base-200 shadow-lg">
         <div class="navbar-start">
             <div class="dropdown">
@@ -20,7 +22,7 @@
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="#passion">Ma Passion</a></li>
                     <li><a href="#competences">Compétences</a></li>
-                    <li><a href="#projets">Projets</a></li>
+                    
                     <li><a href="#calculatrice">Calculatrice</a></li>
                     <li><a href="#contact">Me Contacter</a></li>
                 </ul>
@@ -41,7 +43,8 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+<!----------------------------- Hero Section ---------------------------->
+    
     <div class="hero min-h-screen bg-base-200" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');">
         <div class="hero-overlay bg-opacity-60"></div>
         <div class="hero-content text-center text-neutral-content">
@@ -53,11 +56,11 @@
         </div>
     </div>
 
-    <!-- Passion Section -->
+<!-- -----------------------Passion Section ---------------------------------------------------->
+
     <section id="passion" class="py-16 px-4">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12">Pourquoi l'Informatique?</h2>
-            
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="flex-1">
                     <div class="card bg-base-100 shadow-xl">
@@ -92,7 +95,8 @@
         </div>
     </section>
 
-    <!-- Compétences Section -->
+<!--------------------------- Compétences Section ----------------------------------->
+
     <section id="competences" class="py-16 px-4 bg-base-200">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12">Mes Compétences</h2>
@@ -141,7 +145,8 @@
         </div>
     </section>
 
-    <!-- Projets Section -->
+<!------------------------------ Projets Section --------------------------------->
+
     <section id="projets" class="py-16 px-4">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12">Mes Projets</h2>
@@ -199,24 +204,224 @@
         </div>
     </section>
 
-    <!-- Calculatrice Section -->
-    <section id="calculatrice" class="py-16 px-4 bg-base-200">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Calculatrice</h2>
-            
-            <div class="flex justify-center">
-                <div class="card bg-base-100 shadow-xl">
-                    <div class="card-body">
-                        <div id="calculatrice-container" class="w-full max-w-xs">
-                            <!-- Votre calculatrice sera injectée ici -->
+<!-------------------------- Calculatrice et lien  Section ------------------------------------>
+
+    <section id="calculatrice" class="py-16 px-4 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Accéder à la Calculatrice</h2>
+            <a href="calculatrice/index.html" class="inline-block bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition">
+                Ouvrir la Calculatrice
+            </a>
+        </div>
+    </section>
+<!----------------------------------questionnaire et lien  section --------------------------------->
+
+<section id="calculatrice" class="py-16 px-4 bg-gray-100">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-8">Accéder au questionnaire</h2>
+        <a href="questionnaire/index.html" class="inline-block bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition">
+            Ouvrir le questionnaire
+        </a>
+    </div>
+</section>
+        
+        
+<!-------------------------- Version intégrée ------------------------->
+
+        <div class="container mx-auto max-w-2xl">
+            <div class="card bg-base-200 shadow-xl">
+                <div class="card-body">
+                    <div id="quiz-container">
+
+<!----------------------- Contenu dynamique -------------------------->
+
+                    </div>
+                    <div id="result-container" class="hidden mt-6">
+                        <div class="alert">
+                            <span id="result-message"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
+<!------------- Script à placer AVANT la fermeture de body --------------------->
+
+<script type="module">
+    import { questionnaire } from './js/questionnaire.js';
+
+    let currentQuestion = 0;
+    let reponses = "";
+    const quizContainer = document.getElementById('quiz-container');
+    const resultContainer = document.getElementById('result-container');
+    const resultMessage = document.getElementById('result-message');
+    const bruteForceBtn = document.getElementById('bruteForceBtn');
+
+    function displayQuestion() {
+        if (currentQuestion < questionnaire.length) {
+            const q = questionnaire[currentQuestion];
+            quizContainer.innerHTML = `
+                <h3 class="text-xl font-semibold mb-4">${q.qlabel}</h3>
+                <div class="space-y-2" id="answers-container"></div>
+                <div class="text-sm text-base-content/70 mt-4">
+                    Question ${currentQuestion + 1}/${questionnaire.length}
+                </div>
+            `;
+
+            const answersContainer = document.getElementById('answers-container');
+            q.reponses.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-outline w-full justify-start';
+                btn.textContent = answer.rlabel;
+                btn.onclick = () => selectAnswer(q.qid, answer.rid, answer.correct);
+                answersContainer.appendChild(btn);
+            });
+        } else {
+            checkContactPage();
+        }
+    }
+
+    function selectAnswer(qid, rid, isCorrect) {
+        reponses += `A${qid}_${rid}`;
+        currentQuestion++;
+        displayQuestion();
+    }
+
+    function checkContactPage() {
+        const allCorrect = reponses === "A1_1A2_1A3_1A4_1";
+        
+        if (allCorrect) {
+            window.location.href = "contact.html";
+        } else {
+            quizContainer.innerHTML = '';
+            resultContainer.classList.remove('hidden');
+            resultMessage.textContent = "Suite à vos réponses, vous ne souhaitez pas être contacté.";
+            resultContainer.className = "alert alert-error mt-6";
+        }
+    }
+
+    function activateBruteForce() {
+        if (confirm("Activer le mode Brute Force avec les bonnes réponses ?")) {
+            reponses = "A1_1A2_1A3_1A4_1";
+            showContactForm();
+            document.getElementById('questionnaire').scrollIntoView();
+        }
+    }
+
+    function showContactForm() {
+        quizContainer.innerHTML = `
+            <div class="alert alert-success mb-4">
+                Mode Brute Force activé - Formulaire débloqué
+            </div>
+            <!-- Formulaire de contact ici -->
+        `;
+    }
+
+    // Initialisation
+    displayQuestion();
+    bruteForceBtn.addEventListener('click', activateBruteForce);
+</script>
+
+<!---------------------------- Contenu dynamique -------------------------->
+
+                </div>
+                <div id="result-container" class="hidden mt-6">
+                    <div class="alert">
+                        <span id="result-message"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module">
+    import { questionnaire } from './js/questionnaire.js';
+
+    let currentQuestion = 0;
+    let reponses = "";
+    const quizContainer = document.getElementById('quiz-container');
+    const resultContainer = document.getElementById('result-container');
+    const resultMessage = document.getElementById('result-message');
+    const bruteForceBtn = document.getElementById('bruteForceBtn');
+
+    function displayQuestion() {
+        if (currentQuestion < questionnaire.length) {
+            const q = questionnaire[currentQuestion];
+            quizContainer.innerHTML = `
+                <h3 class="text-xl font-semibold mb-4">${q.qlabel}</h3>
+                <div class="space-y-2" id="answers-container"></div>
+                <div class="text-sm text-base-content/70 mt-4">
+                    Question ${currentQuestion + 1}/${questionnaire.length}
+                </div>
+            `;
+
+            const answersContainer = document.getElementById('answers-container');
+            q.reponses.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-outline w-full justify-start';
+                btn.textContent = answer.rlabel;
+                btn.onclick = () => selectAnswer(q.qid, answer.rid, answer.correct);
+                answersContainer.appendChild(btn);
+            });
+        } else {
+            checkContactPage();
+        }
+    }
+
+    function selectAnswer(qid, rid, isCorrect) {
+        reponses += `A${qid}_${rid}`;
+        currentQuestion++;
+        displayQuestion();
+    }
+
+    function checkContactPage() {
+    const allCorrect = reponses === "A1_1A2_1A3_1A4_1";
+    
+    if (allCorrect) {
+        // Redirection vers la page de contact existante
+        window.location.href = "contact_success.html";
+    } else {
+        quizContainer.innerHTML = '';
+        resultContainer.classList.remove('hidden');
+        resultMessage.textContent = "Suite à vos réponses, vous ne souhaitez pas être contacté.";
+        resultContainer.className = "alert alert-error mt-6";
+    }
+}
+
+function activateBruteForce() {
+    // 1. Affiche un message de confirmation
+    if (confirm("Activer le mode Brute Force avec les bonnes réponses ?")) {
+        // 2. Simule les bonnes réponses
+        reponses = "A1_1A2_1A3_1A4_1";
+        
+        // 3. Affiche le formulaire directement
+        showContactForm();
+        
+        // 4. Scroll vers la section questionnaire
+        document.getElementById('questionnaire').scrollIntoView();
+    }
+}
+
+function showContactForm() {
+    quizContainer.innerHTML = 
+        <div class="alert alert-success mb-4">
+            Mode Brute Force activé - Formulaire débloqué
+        </div>
+        <!-- Votre formulaire de contact ici -->
+}
+
+    // Initialisation
+    displayQuestion();
+
+    // Lier l'événement click au bouton Brute Force
+    bruteForceBtn.addEventListener('click', activateBruteForce);
+</script>
+
+<!----------------------------- Contact Section ------------------------------->
+
     <section id="contact" class="py-16 px-4">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12">Me Contacter</h2>
@@ -229,7 +434,9 @@
                             <p>Pour me contacter, vous devez d'abord répondre correctement à quelques questions sur l'informatique. Cela me permet de m'assurer que vous partagez la même passion!</p>
                             
                             <div id="questionnaire-container" class="mt-6">
-                                <!-- Les questions seront injectées ici -->
+
+<!---------------------- Les questions seront injectées ici --------------------------->
+
                             </div>
                             
                             <div id="result-message" class="mt-4 hidden">
@@ -276,7 +483,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
+<!------------------------------ Footer -------------------------------->
+
     <footer class="footer p-10 bg-neutral text-neutral-content">
         <div>
             <span class="footer-title">Services</span> 
@@ -298,8 +506,9 @@
         </div>
     </footer>
 
-    <script src="js/calculatrice.js"></script>
-    <script src="js/questionnaire.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/projet/src/calculatrice/index.html"></script>
+    <script src="/projet/src/calculatrice/style.css"></script>
+    <script src="/projet/src/contact/"></script>
+    <script src="/projet/src/contact/"></script>
 </body>
 </html>
